@@ -4,6 +4,7 @@ import emailjs from "@emailjs/browser";
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [contactOpen, setContactOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const [emailStatus, setEmailStatus] = useState("");
   const [sending, setSending] = useState(false);
@@ -47,27 +48,65 @@ function App() {
         darkMode ? "bg-[#0B1220] text-white" : "bg-[#F5F9FF] text-[#1423B]"
       }`}
     >
-      {/*Navigation*/}
-      <nav className="flex items-center justify-between px-8 py6">
+      {/* Navigation */}
+      <nav className="relative flex items-center justify-between px-6 py-6 md:px-8 md:py-7">
+        {/* Logo */}
         <h1 className="text-xl font-bold tracking-wide">
           PORTFOLIO<span className="text-[#4BB7FF]">.</span>
         </h1>
 
-        <div className="flex gap-6 text-sm">
-          <a href="#about" className="hover:text[#4BB7FF]">
+        {/* Desktop Navigation */}
+        <div className="ml-auto mr-6 hidden items-center gap-6 text-sm md:flex">
+          <a href="#about" className="transition hover:text-[#4BB7FF]">
             About
           </a>
-          <a href="#contact" className="hover:text-[#4BB7FF]">
+          <a href="#projects" className="transition hover:text-[#4BB7FF]">
+            Projects
+          </a>
+          <a href="#contact" className="transition hover:text-[#4BB7FF]">
             Contact
           </a>
+        </div>
+
+        {/* Theme Toggle + Mobile Menu */}
+        <div className="flex items-center gap-3">
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="ml-4 rounded-full border border-blue-400 px-3 py-2 transition hover:bg-blue-500/20"
+            className="rounded-full border border-blue-400 px-3 py-2 transition hover:bg-blue-500/20"
             aria-label="Toggle dark and light mode"
           >
             {darkMode ? "☀️" : "🌙"}
           </button>
+
+          {/* Hamburger Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="rounded-lg border border-blue-400 p-2 transition hover:bg-blue-500/20 md:hidden"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
         </div>
+
+        {/* Mobile Dropdown */}
+        {menuOpen && (
+          <div
+            className={`absolute left-0 right-0 top-full z-50 flex flex-col gap-5 border-b border-blue-400/20 px-6 py-6 shadow-xl md:hidden ${
+              darkMode ? "bg-[#0B1220]" : "bg-[#F5F9FF]"
+            }`}
+          >
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>
+              Projects
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -84,7 +123,7 @@ function App() {
           FRONTEND DEVELOPER
         </p>
 
-        <h2 className="mb-6 text 5xl font-bold leading-tight md:text-7xl">
+        <h2 className="mb-6 text-5xl font-bold leading-tight sm:text-6xl md:text-7xl">
           Building digital
           <br />
           <span className="inline-block text-[#4BB7FF] transition-all duration-300 hover:scale-105 hover:text-[#61C8FF] hover:drop-shadow-[0_0_20px_rgba(75,183,255,0.6)]">
@@ -132,11 +171,11 @@ function App() {
           <div
             className={`mb-10 overflow-hidden rounded-2xl border
     transition-all duration-300
-    hover:-translate-y-2
+    md:hover:-translate-y-2
     ${
       darkMode
-        ? "border-slate-700 bg-[#14243B] hover:border-[#4BB7FF] hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
-        : "border-slate-200 bg-white hover:border-[#168CE8] hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+        ? "border-slate-700 bg-[#14243B] shadow-[0_0_55px_8px_rgba(75,183,255,0.55)] md:shadow-none md:hover:border-[#4BB7FF] md:hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
+       : "border-blue-200 bg-[#E8F1FA] shadow-[0_0_45px_5px_rgba(22,140,232,0.35)] md:shadow-[0_8px_30px_rgba(22,140,232,0.10)] md:hover:border-[#168CE8] md:hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
     }`}
           >
             <div className="grid md:grid-cols-2">
@@ -220,9 +259,10 @@ function App() {
             className={`overflow-hidden rounded-2xl border
     transition-all duration-300 hover:-translate-y-2
     ${
-      darkMode
-        ? "border-slate-700 bg-[#14243B] hover:border-[#4BB7FF] hover:shadow-[0_0_55px_rgba(75,183,255,0.45)]"
-        : "border-slate-200 bg-white hover:border-[#168CE8] hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+ darkMode
+  ? "border-slate-700 bg-[#14243B] shadow-[0_0_55px_8px_rgba(75,183,255,0.55)] md:shadow-none md:hover:border-[#4BB7FF] md:hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
+  : "border-blue-200 bg-[#E8F1FA] shadow-[0_0_45px_5px_rgba(22,140,232,0.35)] md:shadow-[0_8px_30px_rgba(22,140,232,0.10)] md:hover:border-[#168CE8] md:hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
     }`}
           >
             <div className="grid md:grid-cols-2">
@@ -310,9 +350,11 @@ function App() {
             className={`mt-10 overflow-hidden rounded-2xl border
     transition-all duration-300 hover:-translate-y-2
     ${
-      darkMode
-        ? "border-slate-700 bg-[#14243B] hover:border-[#4BB7FF] hover:shadow-[0_0_55px_rgba(75,183,255,0.45)]"
-        : "border-slate-200 bg-white hover:border-[#168CE8] hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
+darkMode
+  ? "border-slate-700 bg-[#14243B] shadow-[0_0_55px_8px_rgba(75,183,255,0.55)] md:shadow-none md:hover:border-[#4BB7FF] md:hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
+  : "border-blue-200 bg-[#E8F1FA] shadow-[0_0_45px_5px_rgba(22,140,232,0.35)] md:shadow-[0_8px_30px_rgba(22,140,232,0.10)] md:hover:border-[#168CE8] md:hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
     }`}
           >
             <div className="grid md:grid-cols-2">
@@ -395,9 +437,10 @@ function App() {
             className={`mt-10 overflow-hidden rounded-2xl border
     transition-all duration-300 hover:-translate-y-2
     ${
-      darkMode
-        ? "border-slate-700 bg-[#14243B] hover:border-[#4BB7FF] hover:shadow-[0_0_55px_rgba(75,183,255,0.45)]"
-        : "border-slate-200 bg-white hover:border-[#168CE8] hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
+darkMode
+  ? "border-slate-700 bg-[#14243B] shadow-[0_0_55px_8px_rgba(75,183,255,0.55)] md:shadow-none md:hover:border-[#4BB7FF] md:hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
+ : "border-blue-200 bg-[#E8F1FA] shadow-[0_0_45px_5px_rgba(22,140,232,0.35)] md:shadow-[0_8px_30px_rgba(22,140,232,0.10)] md:hover:border-[#168CE8] md:hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
     }`}
           >
             <div className="grid md:grid-cols-2">
@@ -480,9 +523,11 @@ function App() {
             className={`mt-10 overflow-hidden rounded-2xl border
     transition-all duration-300 hover:-translate-y-2
     ${
-      darkMode
-        ? "border-slate-700 bg-[#14243B] hover:border-[#4BB7FF] hover:shadow-[0_0_55px_rgba(75,183,255,0.45)]"
-        : "border-slate-200 bg-white hover:border-[#168CE8] hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
+darkMode
+  ? "border-slate-700 bg-[#14243B] shadow-[0_0_55px_8px_rgba(75,183,255,0.55)] md:shadow-none md:hover:border-[#4BB7FF] md:hover:shadow-[0_0_75px_rgba(75,183,255,0.45)]"
+ : "border-blue-200 bg-[#E8F1FA] shadow-[0_0_45px_5px_rgba(22,140,232,0.35)] md:shadow-[0_8px_30px_rgba(22,140,232,0.10)] md:hover:border-[#168CE8] md:hover:shadow-[0_0_45px_rgba(22,140,232,0.3)]"
+
     }`}
           >
             <div className="grid md:grid-cols-2">
@@ -619,6 +664,12 @@ function App() {
                 "GitHub",
                 "Firebase",
                 "API Integration",
+                "Next.js",
+                "Redux",
+                "Node.js",
+                "Express", 
+                "Vite",
+                "Vercel",
               ].map((skill) => (
                 <span
                   key={skill}
@@ -675,8 +726,10 @@ function App() {
           {/* Contact Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             {/* Email Button */}
-            <a
-              href="mailto:YOUR_EMAIL@example.com"
+           <button
+  type="button"
+  onClick={() => setContactOpen(true)}
+             
               className="rounded-lg bg-[#168CE8] px-7 py-3 font-semibold text-white
       transition-all duration-300
       hover:-translate-y-1
@@ -684,7 +737,7 @@ function App() {
       hover:shadow-[0_0_30px_rgba(75,183,255,0.5)]"
             >
               Email Me ↗
-            </a>
+            </button>
 
             {/* GitHub Button */}
             <a
