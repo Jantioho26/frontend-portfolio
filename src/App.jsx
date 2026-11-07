@@ -140,12 +140,27 @@ function App() {
           interactive web applications with modern frontend technologies.
         </p>
 
-        <a
-          href="#projects"
-          className="rounded-lg bg-[#168CE8] px-8 py-3 font-semibold transition hover:bg-[#4BB7FF]"
-        >
-          View My Projects
-        </a>
+        
+<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+  {/* View Projects Button */}
+  <a
+    href="#projects"
+    className="rounded-lg bg-[#168CE8] px-8 py-3 font-semibold text-white transition hover:bg-[#4BB7FF]"
+  >
+    View My Projects
+  </a>
+
+  {/* View Resume Button */}
+  <a
+    href="/resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-lg border border-[#4BB7FF] px-8 py-3 font-semibold text-[#4BB7FF] transition hover:bg-[#4BB7FF] hover:text-white hover:shadow-[0_0_25px_rgba(75,183,255,0.5)]"
+  >
+    View Resume ↗
+  </a>
+</div>
+
       </main>
 
       {/* Projects Section */}
