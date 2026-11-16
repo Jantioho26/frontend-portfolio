@@ -44,3 +44,9 @@ A responsive personal portfolio website showcasing my frontend development proje
 Deployed using Vercel.
 
 
+<img width="1259" height="628" alt="Screenshot 2026-11-13 at 4 49 10 PM" src="https://github.com/user-attachments/assets/aabb7836-6024-4572-b666-e8afba44c844" />
+
+<img width="1400" height="661" alt="Screenshot 2026-11-16 at 6 42 55 AM" src="https://github.com/user-attachments/assets/6193216f-8d23-4198-b0f8-82929f51457f" />
+
+
+
