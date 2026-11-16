@@ -27,15 +27,15 @@ A responsive personal portfolio website showcasing my frontend development proje
 1. Clone the GitHub repository and navigate to the project folder.
 2. Install dependencies:
 
-   ```bash
+   bash
    npm install
-   ```
+   
 
 3. Start the development server:
 
-   ```bash
+   bash
    npm run dev
-   ```
+   
 
 4. Open the local URL displayed in your terminal.
 
@@ -44,4 +44,3 @@ A responsive personal portfolio website showcasing my frontend development proje
 Deployed using Vercel.
 
 
-<img width="1396" height="659" alt="Screenshot 2026-11-15 at 6 47 38 PM" src="https://github.com/user-attachments/assets/b1b797b4-dcee-4de6-8d56-5cccdc272950" />
